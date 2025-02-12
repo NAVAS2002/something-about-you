@@ -6,69 +6,10 @@
 
     <title>Una rosa para ti</title>
     <style>
-        body {
-            height: 100%;
-            width: 100%;
-            background: #080f1a;
+       Body {
+            margin: 0;
             overflow: hidden;
-        }
-
-        .container {
-            position: absolute;
-            left: 50%;
-            top: 30%;
-            transform: translate(-50%, -50%);
-        }
-
-        .glass {
-            height: 800px;
-            width: 600px;
-            background: #122139;
-            border-radius: 300px 300px 0px 0px;
-        }
-
-        .glass:before {
-            content: "";
-            height: 40px;
-            width: 40px;
-            transform-origin: center;
-            border: 25px solid #122139;
-            border-radius: 100%;
-            position: absolute;
-            left: 256px;
-            top: -74px;
-        }
-
-        .glass:after {
-            content: "";
-            position: absolute;
-            height: 15px;
-            width: 600px;
-            background: #a52a2a;
-            top: 100%;
-            left: 0%;
-        }
-
-        .shine {
-            width: 26px;
-            height: 330px;
-            background: white;
-            opacity: 0.2;
-            position: absolute;
-            left: 85%;
-            top: 200px;
-            border-radius: 100px;
-            z-index: 10;
-        }
-
-        .shine:before {
-            content: "";
-            width: 26px;
-            height: 40px;
-            position: absolute;
-            background: white;
-            top: 365px;
-            border-radius: 100px;
+            background-color: #0a0a0a;
         }
 
         .petals>div {
@@ -77,7 +18,7 @@
             width: 85px;
             height: 120px;
             top: 200px;
-            transition: all 0.5s ease-out;
+            transition: all 0.3s ease-out;
         }
 
         .petals>div:nth-child(1) {
@@ -281,7 +222,20 @@
         .thorns>div:nth-child(4) {
             top: 525px;
         }
-
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: rgb(255, 0, 85);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { opacity: 0; transform: translateY(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
         @keyframes bloom2 {
             50% {
                 transform: rotate(-90deg);
@@ -392,7 +346,31 @@
         </div>
     </div>
     <div>
-        <h4 class="texto">ADZM❤️</h>
+        <body>
+            <div class="container" id="container">
+                <div class="flower">
+                    <div class="stem"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+            </div>
+            <script>
+                function createParticles() {
+                    const container = document.getElementById('container');
+                    for (let i = 0; i < 20; i++) {
+                        let particle = document.createElement('div');
+                        particle.classList.add('particle');
+                        particle.style.left = Math.random() * window.innerWidth + 'px';
+                        particle.style.top = Math.random() * window.innerHeight + 'px';
+                        particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                        container.appendChild(particle);
+                    }
+                }
+                createParticles();
+            </script>
+            <h4 class="texto">❣️Un rosa para una preciosa❣️</h>
+        </body>
     </div>
 </body>
 
